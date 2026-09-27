@@ -1,0 +1,4 @@
+@import "../../styles/common.css";
+
+body { max-width: 480px; }
+#saved { margin-left: 8px; color: var(--accent); }

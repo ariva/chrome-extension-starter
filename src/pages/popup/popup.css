@@ -1,0 +1,7 @@
+@import "../../styles/common.css";
+
+header { display: flex; align-items: start; justify-content: space-between; }
+#close { border: 0; background: none; font-size: 20px; line-height: 1; padding: 0 4px; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+#answer { display: block; min-height: 1.4em; overflow-wrap: anywhere; }
+footer { position: fixed; bottom: 12px; right: 16px; opacity: 0.6; font-size: 12px; }

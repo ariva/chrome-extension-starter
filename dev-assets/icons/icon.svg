@@ -1,0 +1,16 @@
+<!-- Source of every icon PNG: edit, then `just icons`. --c1/--c2 are the badge gradient;
+     scripts/generate-icons.mjs overrides them for the dev set. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" style="--c1:#fbbf24;--c2:#ea580c">
+  <defs>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="var(--c1)"/>
+      <stop offset="1" stop-color="var(--c2)"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="6" width="116" height="116" rx="28" fill="url(#badge)"/>
+  <g fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="48,42 26,64 48,86"/>
+    <polyline points="80,42 102,64 80,86"/>
+    <line x1="71" y1="36" x2="57" y2="92"/>
+  </g>
+</svg>

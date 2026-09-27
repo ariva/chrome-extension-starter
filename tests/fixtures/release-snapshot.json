@@ -1,0 +1,55 @@
+{
+  "files": [
+    "assets/options.css",
+    "assets/popup.css",
+    "background/service-worker.js",
+    "chunks/dom.js",
+    "chunks/env.js",
+    "chunks/messages.js",
+    "features.json",
+    "icons/icon128.png",
+    "icons/icon16.png",
+    "icons/icon32.png",
+    "icons/icon48.png",
+    "manifest.json",
+    "options/index.html",
+    "options/index.js",
+    "popup/index.html",
+    "popup/index.js"
+  ],
+  "manifest": {
+    "manifest_version": 3,
+    "name": "Extension Starter",
+    "description": "Typed MV3 starter: service worker, popup window, options page, storage, messaging.",
+    "minimum_chrome_version": "121",
+    "permissions": [
+      "tabs",
+      "tabGroups",
+      "storage",
+      "alarms",
+      "contextMenus",
+      "sidePanel",
+      "favicon",
+      "scripting",
+      "activeTab"
+    ],
+    "background": {
+      "service_worker": "background/service-worker.js",
+      "type": "module"
+    },
+    "action": {
+      "default_title": "Extension Starter",
+      "default_icon": {
+        "16": "icons/icon16.png",
+        "32": "icons/icon32.png"
+      }
+    },
+    "icons": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "options_page": "options/index.html"
+  }
+}

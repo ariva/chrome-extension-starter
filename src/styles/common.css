@@ -1,0 +1,16 @@
+/* Shared by every page. lib/ui widgets ship no CSS — pages style the ids they create
+   (#toast, #ask-dialog). */
+:root {
+  color-scheme: light dark;
+  --accent: #1a63d4;
+  --border: light-dark(#d0d4dc, #3a3f4b);
+}
+body { font: 14px/1.4 system-ui, sans-serif; margin: 16px; }
+h1 { font-size: 18px; margin: 0 0 12px; }
+button, input { font: inherit; padding: 4px 10px; }
+button { cursor: pointer; }
+#toast { position: fixed; bottom: 12px; left: 12px; padding: 6px 10px; border-radius: 4px; background: #222; color: #fff; }
+#ask-dialog { border: 1px solid var(--border); border-radius: 6px; padding: 16px; }
+#ask-dialog::backdrop { background: rgb(0 0 0 / 40%); }
+.ask-input { display: block; width: 100%; box-sizing: border-box; margin-bottom: 12px; }
+.ask-actions { display: flex; justify-content: flex-end; gap: 8px; }
