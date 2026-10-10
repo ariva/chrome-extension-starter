@@ -17,7 +17,7 @@ Every command goes through [`just`](https://github.com/casey/just) — run `just
 | `just build` | The release: every check below, then `dist/extension-starter.zip`. | Producing the store upload. |
 | `just build minify=true` | Same release gate, minified output: `dist/extension-starter-min.zip`. | Only if you want the smaller zip — see [Minified build](#minified-build). |
 | `just lint`, `just typecheck`, `just format` | The pieces of `check` on their own; `format` applies Biome's formatting and safe fixes. | |
-| `just icons` | Renders `dev-assets/icons/icon.svg` into `public/icons/` and `dev-assets/icons/dev/` (headless Chromium). | After editing the icon. |
+| `just icons` | Renders `icons/icon.svg` into `icons/prod/` and `icons/dev/` (headless Chromium). | After editing the icon. |
 | `just clean` | Removes `dist/`. | |
 
 The browser tiers need Playwright's Chromium once: `npx playwright install chromium`.
@@ -33,7 +33,7 @@ dist/prod/    production build — what gets zipped
   options/index.html, index.js    the options page
   chunks/*.js                     code shared between the worker and the pages
   assets/*.css                    page styles
-  icons/                          from public/icons
+  icons/                          from icons/prod
   features.json                   copied from the repo root — the extension fetches it at run time
 ```
 

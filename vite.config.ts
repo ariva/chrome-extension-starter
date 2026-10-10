@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
     // pages are the root so they land at popup/index.html + options/index.html — the manifest paths
     root: resolve(root, "src/pages"),
     base: "./", // chrome-extension:// origin — every URL relative
-    publicDir: resolve(root, "public"),
+    publicDir: false, // icons/ go through staticFilesPlugin: prod always, dev only in development
     build: {
       outDir: resolve(root, isDev ? "dist/dev" : "dist/prod"),
       emptyOutDir: true,
@@ -54,7 +54,9 @@ export default defineConfig(({ mode }) => {
       manifestPlugin(() => manifest(readVersion()), [packageJson]),
       staticFilesPlugin([
         { from: resolve(root, "features.json"), to: "features.json" },
-        { from: resolve(root, "dev-assets/icons/dev"), to: "icons/dev", devOnly: true },
+        { from: resolve(root, "icons/prod"), to: "icons" },
+        // the violet icons mark a dev-loaded extension; never in dist/prod (release snapshot audits it)
+        { from: resolve(root, "icons/dev"), to: "icons/dev", devOnly: true },
       ]),
       devReloadPlugin({ pageDirs: ["popup", "options"], port: 5184 }), // own port — two extensions in `just dev` at once must not share one
     ],

@@ -1,4 +1,4 @@
-// `just icons` — renders dev-assets/icons/icon.svg into both PNG sets, so the dev icons can never
+// `just icons` — renders icons/icon.svg into both PNG sets, so the dev icons can never
 // drift from the shipped ones: same shape, different badge gradient. Chromium (Playwright, already
 // a devDependency) does the rasterising; the PNGs are committed, the build never needs a browser.
 import { readFileSync } from "node:fs";
@@ -8,14 +8,14 @@ import { chromium } from "@playwright/test";
 const ROOT = resolve(import.meta.dirname, "..");
 const SIZES = [16, 32, 48, 128];
 const SETS = [
-  { dir: "public/icons", colors: null }, // shipped: the gradient written in icon.svg
-  { dir: "dev-assets/icons/dev", colors: ["#a78bfa", "#6d28d9"] }, // dev copy: violet
+  { dir: "icons/prod", colors: null }, // shipped: the gradient written in icon.svg
+  { dir: "icons/dev", colors: ["#a78bfa", "#6d28d9"] }, // dev copy: violet
 ];
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ deviceScaleFactor: 1 });
 await page.setContent(
-  `<style>body{margin:0}svg{display:block}</style>${readFileSync(resolve(ROOT, "dev-assets/icons/icon.svg"), "utf8")}`,
+  `<style>body{margin:0}svg{display:block}</style>${readFileSync(resolve(ROOT, "icons/icon.svg"), "utf8")}`,
 );
 const svg = page.locator("svg");
 for (const { dir, colors } of SETS) {

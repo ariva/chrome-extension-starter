@@ -56,7 +56,7 @@ dev:
 build minify="false":
     MINIFY={{ if minify =~ '^(minify=)?true$' { "1" } else { "" } }} ./scripts/build.sh
 
-# edit dev-assets/icons/icon.svg, then run this; the PNGs are committed
+# edit icons/icon.svg, then run this; the PNGs are committed
 # regenerate shipped + dev icon PNGs from the one SVG source (scripts/generate-icons.mjs)
 icons:
     node scripts/generate-icons.mjs

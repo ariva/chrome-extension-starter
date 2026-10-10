@@ -10,7 +10,7 @@ How to turn this repository into your extension. What the code looks like and wh
 | Package name, author | `package.json` (`version` here is the only version — the build stamps it into `manifest.json`) |
 | Zip name | `scripts/pack.sh` (`extension-starter.zip`, twice) |
 | Page titles | `src/pages/popup/index.html`, `src/pages/options/index.html` |
-| Icons | `dev-assets/icons/icon.svg`, then `just icons` — regenerates `public/icons/` (shipped) and `dev-assets/icons/dev/` (the dev copy's toolbar icon, same shape in violet; colours in `scripts/generate-icons.mjs`) — 16, 32, 48, 128 px PNG |
+| Icons | `icons/icon.svg`, then `just icons` — regenerates `icons/prod/` (shipped) and `icons/dev/` (the dev copy's toolbar icon, same shape in violet; colours in `scripts/generate-icons.mjs`) — 16, 32, 48, 128 px PNG |
 | Permissions | `src/manifest.ts` — delete what you do not call, then `UPDATE_SNAPSHOT=1 npx vitest run tests/structure/release-snapshot.test.ts` |
 | Dev-reload port | `vite.config.ts` (`port: 5184`) — only matters when two extensions run `just dev` at the same time |
 | Licence, README | `LICENCE`, `README.md` |
