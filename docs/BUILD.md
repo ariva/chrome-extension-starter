@@ -14,8 +14,8 @@ Every command goes through [`just`](https://github.com/casey/just) — run `just
 | `just test`, `just test-watch` | The unit + UI tier, once or re-running on save. | See [TESTING.md](TESTING.md). |
 | `just test-browser` | Real-browser tier (headless Chromium). | Anything about focus, clicks, dialogs. |
 | `just test-e2e` | Builds `dist/prod`, then runs the Playwright tests against the real extension. | Anything that depends on what Chrome really does. |
-| `just build` | The release: every check below, then `dist/extension-starter.zip`. | Producing the store upload. |
-| `just build minify=true` | Same release gate, minified output: `dist/extension-starter-min.zip`. | Only if you want the smaller zip — see [Minified build](#minified-build). |
+| `just build` | The release: every check below, then `dist/extension-starter-v<version>.zip` (version from `package.json`). | Producing the store upload. |
+| `just build minify=true` | Same release gate, minified output: `dist/extension-starter-v<version>-min.zip`. | Only if you want the smaller zip — see [Minified build](#minified-build). |
 | `just lint`, `just typecheck`, `just format` | The pieces of `check` on their own; `format` applies Biome's formatting and safe fixes. | |
 | `just icons` | Renders `icons/icon.svg` into `icons/prod/` and `icons/dev/` (headless Chromium). | After editing the icon. |
 | `just clean` | Removes `dist/`. | |
@@ -60,7 +60,7 @@ The signal is an HTTP long-poll on `localhost:5184` (`port` in `vite.config.ts`)
 2. `scripts/validate_hashes.sh` — every commit hash mentioned in `CHANGES.md` exists in git history.
 3. `scripts/validate_code.sh` — `just check`.
 4. `just test-browser`.
-5. `scripts/pack.sh` — production build into `dist/prod`, zipped to `dist/extension-starter.zip`.
+5. `scripts/pack.sh` — production build into `dist/prod`, zipped to `dist/extension-starter-v<version>.zip`.
 6. `npx playwright test` — the e2e tests, against the `dist/prod` that was just packed.
 
 Inside step 3, the test suite also pins what ships: the zip's file list and manifest, no dev or tooling files, no dev-loop or network code, no source maps.
@@ -73,7 +73,7 @@ To cut a release: bump `version` in `package.json`, write the `CHANGES.md` entry
 just build minify=true     # or: just build true
 ```
 
-Same gate, same checks, but Vite minifies JavaScript and CSS and the zip is named `dist/extension-starter-min.zip`. Without the gate: `MINIFY=1 scripts/pack.sh`. The default build — and the store upload — stays unminified: extension files load from the local disk, so minifying buys kilobytes, not speed, and costs source a store reviewer can read and stack traces you can read.
+Same gate, same checks, but Vite minifies JavaScript and CSS and the zip is named `dist/extension-starter-v<version>-min.zip`. Without the gate: `MINIFY=1 scripts/pack.sh`. The default build — and the store upload — stays unminified: extension files load from the local disk, so minifying buys kilobytes, not speed, and costs source a store reviewer can read and stack traces you can read.
 
 ## When a build fails
 

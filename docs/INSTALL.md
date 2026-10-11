@@ -57,7 +57,7 @@ Service-worker logs: click the **service worker** link on the extension card to 
 ## Packing a zip (optional)
 
 ```bash
-just build    # release checks + dist/extension-starter.zip (readable, unminified — the store upload)
+just build    # release checks + dist/extension-starter-v<version>.zip (readable, unminified — the store upload)
 ```
 
 Needs, on top of the requirements above: [`jq`](https://jqlang.github.io/jq/), `zip`, `unzip`, `git`, and Playwright's Chromium (`npx playwright install chromium`). What the release checks are: [BUILD.md](BUILD.md).

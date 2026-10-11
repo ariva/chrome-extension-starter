@@ -38,8 +38,17 @@ test("pages boot, the worker answers, the pref round-trips, zero network request
   await options.locator("#name").blur();
   await expect(popup.locator("#hello")).toHaveText(/Hello, starter!$/);
 
-  await popup.locator("#close").click();
-  await expect.poll(() => popup.isClosed()).toBe(true);
+  // the handler is window.close(): the page can vanish before the click round-trip returns, so only that error is fine
+  const closed = popup.waitForEvent("close");
+  await popup
+    .locator("#close")
+    .click()
+    .catch((error: Error) => {
+      if (!/closed/.test(error.message)) {
+        throw error;
+      }
+    });
+  await closed;
 
   expect(errors).toEqual([]);
   expect(networkRequests).toEqual([]);
