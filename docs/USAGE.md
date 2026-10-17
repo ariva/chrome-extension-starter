@@ -14,7 +14,7 @@ How to turn this repository into your extension. What the code looks like and wh
 | Permissions | `src/manifest.ts` — delete what you do not call, then `UPDATE_SNAPSHOT=1 npx vitest run tests/structure/release-snapshot.test.ts` |
 | Dev-reload port | `vite.config.ts` (`port: 5184`) — only matters when two extensions run `just dev` at the same time |
 | Licence, README | `LICENCE`, `README.md` |
-| Store listing | `.private/publish/PUBLISHING.md` (gitignored) |
+| Store listing | store process: [Chrome Web Store publishing docs](https://developer.chrome.com/docs/webstore/publish/) |
 
 `rg -i "extension.starter"` finds every leftover.
 
@@ -49,3 +49,10 @@ The starter opens a real window because it survives losing focus. For the small 
 ## Releasing
 
 Bump `version` in `package.json`, add the `## v<version> — <date>` section to `CHANGES.md` (the `release-notes` agent skill writes it from git history), run `just build`, tag `release-v<version>`. Details: [BUILD.md](BUILD.md#the-release-build).
+
+## Resources
+
+- [Chrome extensions API reference](https://developer.chrome.com/docs/extensions/reference/) — every `chrome.*` namespace, manifest keys, permissions.
+- [Chrome developers blog](https://developer.chrome.com/blog/) — new extension APIs and platform changes, announced per release.
+- [Chromium release schedule](https://chromiumdash.appspot.com/schedule) — when a Chrome version (and the API it brings) reaches stable.
+- [Chrome Web Store publishing](https://developer.chrome.com/docs/webstore/publish/) — store listing, review, release.
